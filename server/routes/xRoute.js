@@ -1,11 +1,11 @@
 const express = require('express');
 
-const { xController } = require('../controllers/xController');
+const xxxController = require('../controllers/xController');
 
-const xRouter = express.Router();
+const xxxRouter = express.Router();
 
-xRouter.get('/', xController, (req, res) => {
-  res.json('example');
+xxxRouter.get('/', xxxController.middleware, (req, res) => {
+  res.send('test');
 });
 
-module.exports = xRouter;
+module.exports = xxxRouter;
