@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
 import DummyContainer from './DummyContainer.jsx';
+import ThumbnailButton from './ThumbnailButton.jsx';
+
 const App = () => {
   const [modalState , setModalState ] = useState("none");
   

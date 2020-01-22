@@ -1,5 +1,6 @@
 import React from 'react';
-import DummyComponent from './DummyComponent.jsx';
+import ThumbnailButton from './ThumbnailButton.jsx';
+// import DummyComponent from './DummyComponent.jsx';
 import styled from 'styled-components';
 
 
@@ -13,6 +14,15 @@ const DummyContainer = (props) => {
       place-items: center;
       margin:0;`
 
+const fakeData = {
+  url: 'https://www.biggerbolderbaking.com/wp-content/uploads/2017/09/1C5A0996.jpg',
+  itemName: 'fakeName',
+  itemProducer: 'fakeProducer',
+  itemStars: '4/5',
+  itemPrice: 'cheap',
+  itemNote: 'some note',
+};
+
     return (
         <div>
           <br/>
@@ -20,11 +30,11 @@ const DummyContainer = (props) => {
             {title}
             </h1>
         <AppLayout>
-          <DummyComponent/>
-          <DummyComponent/>
-          <DummyComponent/>
-          <DummyComponent/>
-          <DummyComponent/>
+          <ThumbnailButton data={fakeData} />
+          <ThumbnailButton data={fakeData} />
+          <ThumbnailButton data={fakeData} />
+          <ThumbnailButton data={fakeData} />
+          <ThumbnailButton data={fakeData} />
         </AppLayout>
         </div>
         )
