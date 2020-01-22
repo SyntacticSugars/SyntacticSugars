@@ -21,7 +21,7 @@ pool.query(`CREATE TABLE IF NOT EXISTS users
   email VARCHAR (355) UNIQUE NOT NULL,
   created_at TIMESTAMP DEFAULT (now()),
   last_login TIMESTAMP )`, (err, res) => {
-  console.log(err, res);
+  // console.log(err, res);
   // pool.end();
 
   if (err) return err;
@@ -39,7 +39,7 @@ pool.query(`CREATE TABLE IF NOT EXISTS users
     location VARCHAR (124),
     note VARCHAR (24),
     created_at TIMESTAMP DEFAULT (now()))`, (err, res) => {
-    console.log(err, res);
+    // console.log(err, res);
     // pool.end();
   });
 });

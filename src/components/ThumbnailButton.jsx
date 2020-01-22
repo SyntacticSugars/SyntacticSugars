@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 
 const ThumbnailButton = ({ data }) => {
@@ -40,14 +41,16 @@ const ThumbnailButton = ({ data }) => {
   `;
 
   return (
-    <Button onClick={() => { console.log('Tyler'); }}>
-      <img src={data.url} alt="placeholder" style={{ width: '78px' }} />
-      <Name>{data.itemName}</Name>
-      <Info>{data.itemProducer}</Info>
-      <Info>{data.itemStars}</Info>
-      <Price>{data.itemPrice}</Price>
-      <Note>{data.itemNote}</Note>
-    </Button>
+    <Link to={`/product/:${data.itemId}`}>
+      <Button onClick={() => { console.log('Cookies'); }}>
+        <img src={data.url} alt="placeholder" style={{ width: '78px' }} />
+        <Name>{data.itemName}</Name>
+        <Info>{data.itemProducer}</Info>
+        <Info>{data.itemStars}</Info>
+        <Price>{data.itemPrice}</Price>
+        <Note>{data.itemNote}</Note>
+      </Button>
+    </Link>
   );
 };
 
