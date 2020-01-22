@@ -11,8 +11,8 @@ const DummyContainer = (props) => {
       flex-wrap: wrap;
       margin: 10px;
       @media (max-width: 580px) {
-        display: grid;
-        font-size: 1.5em;
+        display: flex;
+        flex-wrap: wrap;
         text-align: center;
         grid-template-rows: 1fr;
         place-items: center;

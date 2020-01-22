@@ -4,10 +4,13 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
 import DummyContainer from './DummyContainer.jsx';
+import CreateProduct from './CreateProduct.jsx';
 
 const App = () => {
   const [modalState , setModalState ] = useState("none");
-  
+  const [loginState , setLoginState ] = useState(false);
+  const [addProductState , setAddProductState ] = useState(false);
+
   const headerOptions = ['Biscotti','Bread' ,'Brownies', 'Cakes', 'Cookies', 'Cupcakes', 'Pastries','Pies']
   const headersRoutes =[];
   const headers = [];
@@ -49,7 +52,7 @@ const App = () => {
     }
   `;
 
-  headersRoutes.push(<Route exact={true} path={`/`}><img style={{width: '100%'}}src ="../assets/homepage-background.jpeg"/></Route>)
+  headersRoutes.push(<Route exact={true} path={`/`}>{!addProductState ? <img id="background" style={{width: '100%'}}src ="../assets/homepage-background.jpeg"/>: <CreateProduct/>}</Route>)
 
   for(let i = 0; i < headerOptions.length; i++){
     headersRoutes.push(<Route path={`/${headerOptions[i]}`}><DummyContainer title={headerOptions[i]}/></Route>)
@@ -63,12 +66,16 @@ const App = () => {
         <img onClick={()=>{setModalState(modalState === "none"? "flex":"none")}} style={{height: "20px"}} src="../assets/hamburger_icon.png"/>
         </HamburgerToggle>
         SyntacticSugars
-        <button style={{marginLeft: "10px", fontSize: "12px", alignItems: "center"}}>Login</button>
+      
+        {!loginState ? <button onClick={()=>{setLoginState(true)}} style={{marginLeft: "10px", fontSize: "12px", alignItems: "center"}}>Login</button> 
+       :<button onClick={()=>{setLoginState(false)}} style={{marginLeft: "10px", fontSize: "12px", alignItems: "center"}}>Logout</button> }
+       {loginState ? <button onClick={()=>{setAddProductState(true)}} style={{marginLeft: "10px", fontSize: "12px", alignItems: "center"}}>Add Product</button>:null} 
+    
       </Title>
       <Router>
-      <MinHeader>
+      {!addProductState ? <MinHeader>
         {headers}
-      </MinHeader>
+      </MinHeader>:null}
         {headersRoutes}
     </Router>
   </div>
