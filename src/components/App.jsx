@@ -8,13 +8,17 @@ import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
 const App = () => {
 
   const [modalState , setModalState ] = useState("none");
-  const headerOptions = ['biscotti','bread' ,'brownies', 'cakes', 'cookies', 'cupcakes', 'pastries','pies']
+  const headerOptions = ['Biscotti','Bread' ,'Brownies', 'Cakes', 'Cookies', 'Cupcakes', 'Pastries','Pies']
   const headersRoutes =[];
   const headers = [];
-  const Title = styled.h1`
+  const Title = styled.p`
     font-size: 1.75em;
     text-align: center;
     color: palevioletred;
+    @media (max-width: 580px) {
+    display: flex;
+    align-items: center;
+    }
   `;
   const LinkTitle = styled.p`
     margin: 2%;
@@ -35,17 +39,28 @@ const App = () => {
       display: ${modalState};
    }
   `;
-   console.log("modalState",modalState)
+ 
+  const HamburgerToggle = styled.div`
+    display: none;
+    @media (max-width: 580px) {
+      display: flex; 
+      width: 25%;
+      margin: 0px;
+    }
+  `;
 
   for(let i = 0; i < headerOptions.length; i++){
-    headersRoutes.push(<Route path={`/${headerOptions[i]}`}><h1>{headerOptions[i]}</h1></Route>)
-    headers.push(<Link to={`/${headerOptions[i]}`} ><LinkTitle>{headerOptions[i]}</LinkTitle></Link>)
+    headersRoutes.push(<Route path={`/${headerOptions[i]}`}><p>{headerOptions[i]}</p></Route>)
+    headers.push(<Link style={{ textDecoration: "none"}} to={`/${headerOptions[i]}`} ><LinkTitle>{headerOptions[i]}</LinkTitle></Link>)
   }
- 
+
   return(
-  <div>
+  <div style={{margin:"5px"}}>
       <Title>
-        <img onClick={()=>{setModalState("flex")}} style={{width: "20px", paddingRight: "2%"}} src="../assets/hamburger_icon.png"/>SyntacticSugars
+        <HamburgerToggle>
+        <img onClick={()=>{setModalState(modalState === "none"? "flex":"none")}} style={{height: "20px"}} src="../assets/hamburger_icon.png"/>
+        </HamburgerToggle>
+        SyntacticSugars
       </Title>
       <Router>
       <MinHeader>
