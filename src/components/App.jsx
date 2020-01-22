@@ -3,11 +3,10 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
-
-
+import DummyContainer from './DummyContainer.jsx';
 const App = () => {
-
   const [modalState , setModalState ] = useState("none");
+  
   const headerOptions = ['Biscotti','Bread' ,'Brownies', 'Cakes', 'Cookies', 'Cupcakes', 'Pastries','Pies']
   const headersRoutes =[];
   const headers = [];
@@ -50,7 +49,7 @@ const App = () => {
   `;
 
   for(let i = 0; i < headerOptions.length; i++){
-    headersRoutes.push(<Route path={`/${headerOptions[i]}`}><p>{headerOptions[i]}</p></Route>)
+    headersRoutes.push(<Route path={`/${headerOptions[i]}`}><DummyContainer title={headerOptions[i]}/></Route>)
     headers.push(<Link style={{ textDecoration: "none"}} to={`/${headerOptions[i]}`} ><LinkTitle>{headerOptions[i]}</LinkTitle></Link>)
   }
 
