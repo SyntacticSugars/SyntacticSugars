@@ -13,9 +13,11 @@ const path = require('path');
 const xxxRouter = require('./routes/xRoute.js'); // TEMP ---------------------------------------------
 
 // statically serve everything in the dist folder on the route '/dist'
+app.use('/assets', express.static(path.join(__dirname, '../src/assets')));
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
 // static route for assets
 app.use('/assets', express.static(path.resolve(__dirname, '../src/assets')));
+
 
 // parse incoming request body and cookies
 app.use(bodyParser.json());
