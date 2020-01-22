@@ -1,10 +1,13 @@
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/prefer-stateless-function */
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
 
+
 const App = () => {
+
+  const [modalState , setModalState ] = useState("none");
   const headerOptions = ['biscotti','bread' ,'brownies', 'cakes', 'cookies', 'cupcakes', 'pastries','pies']
   const headersRoutes =[];
   const headers = [];
@@ -29,9 +32,10 @@ const App = () => {
       align-items: flex-start;
       justify-content: center;
       flex-direction: column;
+      display: ${modalState};
    }
   `;
-
+   console.log("modalState",modalState)
 
   for(let i = 0; i < headerOptions.length; i++){
     headersRoutes.push(<Route path={`/${headerOptions[i]}`}><h1>{headerOptions[i]}</h1></Route>)
@@ -40,7 +44,9 @@ const App = () => {
  
   return(
   <div>
-      <Title>SyntacticSugars</Title>
+      <Title>
+        <img onClick={()=>{setModalState("flex")}} style={{width: "20px", paddingRight: "2%"}} src="../assets/hamburger_icon.png"/>SyntacticSugars
+      </Title>
       <Router>
       <MinHeader>
         {headers}
