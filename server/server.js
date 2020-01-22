@@ -17,8 +17,6 @@ const db = require('./models/bakeryModel.js');
 // statically serve everything in the dist folder on the route '/dist'
 app.use('/assets', express.static(path.join(__dirname, '../src/assets')));
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
-// static route for assets
-app.use('/assets', express.static(path.resolve(__dirname, '../src/assets')));
 
 
 // parse incoming request body and cookies
