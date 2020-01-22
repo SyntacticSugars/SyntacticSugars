@@ -34,14 +34,18 @@ const ThumbnailButton = ({ data }) => {
   const Button = styled.button`
   padding: .5em;
   margin: .5em;
+  width: 20%;
   background-color: gba(250,250,250);
   box-shadow: 0px 0px 3px rgba(0, 0, 0, .3);  
   text-align: left;
+  @media (max-width: 580px){
+    width: 30%;
+  }
   `;
 
   return (
     <Button onClick={() => { console.log('Tyler'); }}>
-      <img src={data.url} alt="placeholder" style={{ width: '78px' }} />
+      <img src={data.url} alt="placeholder" style={{ width: '100%' }} />
       <Name>{data.itemName}</Name>
       <Info>{data.itemProducer}</Info>
       <Info>{data.itemStars}</Info>
