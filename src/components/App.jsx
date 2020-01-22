@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
 import DummyContainer from './DummyContainer.jsx';
-import ThumbnailButton from './ThumbnailButton.jsx';
 
 const App = () => {
   const [modalState , setModalState ] = useState("none");
@@ -49,6 +48,8 @@ const App = () => {
       margin: 0px;
     }
   `;
+
+  headersRoutes.push(<Route exact={true} path={`/`}><img style={{width: '100%'}}src ="../assets/homepage-background.jpeg"/></Route>)
 
   for(let i = 0; i < headerOptions.length; i++){
     headersRoutes.push(<Route path={`/${headerOptions[i]}`}><DummyContainer title={headerOptions[i]}/></Route>)
