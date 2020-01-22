@@ -63,6 +63,7 @@ const App = () => {
         <img onClick={()=>{setModalState(modalState === "none"? "flex":"none")}} style={{height: "20px"}} src="../assets/hamburger_icon.png"/>
         </HamburgerToggle>
         SyntacticSugars
+        <button style={{marginLeft: "10px", fontSize: "12px", alignItems: "center"}}>Login</button>
       </Title>
       <Router>
       <MinHeader>

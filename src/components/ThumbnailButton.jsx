@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-
 const ThumbnailButton = ({ data }) => {
   const Name = styled.h1`
   font-size: 1.5em;
