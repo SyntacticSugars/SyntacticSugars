@@ -11,7 +11,6 @@ const PORT = 3000;
 const app = express();
 const path = require('path');
 
-const xxxRouter = require('./routes/xRoute.js'); // TEMP ---------------------------------------------
 const authRouter = require('./routes/authRouter.js');
 const authController = require('./controllers/authController.js');
 
