@@ -1,3 +1,7 @@
+// SQL URL: postgres://mdpuqwne:8xvOQ11vVzhWqtCAKGH1oTTJsnNK_fka@rajje.db.elephantsql.com:5432/mdpuqwne
+// SQL PW: 8xvOQ11vVzhWqtCAKGH1oTTJsnNK_fka
+// SQL API KEY: 4955c33c-2625-4f56-abf3-fab7545408e4
+
 const express = require('express');
 
 const bodyParser = require('body-parser');
@@ -6,6 +10,7 @@ const cookieParser = require('cookie-parser');
 const PORT = 3000;
 const app = express();
 const path = require('path');
+<<<<<<< HEAD
 const xxxRouter = require('./routes/xRoute.js'); // TEMP ---------------------------------------------
 const authRouter = require('./routes/authRouter.js');
 const authController = require('./controllers/authController.js');
@@ -32,8 +37,12 @@ app.use(passport.session());
 mongoose.connect(keys.mongodb.dbURI, { useNewUrlParser: true, useUnifiedTopology: true}, () => {
   console.log('connected to mongodb')
 });
+=======
+const productRouter = require('./routes/productRoute.js');
+>>>>>>> dev
 
 // statically serve everything in the dist folder on the route '/dist'
+app.use('/assets', express.static(path.join(__dirname, '../src/assets')));
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
 
 // parse incoming request body and cookies
@@ -48,7 +57,8 @@ app.get('/', (req, res) => {
 
 
 // route handlers
-app.use('/server', xxxRouter); // TEMP ---------------------------------------------
+app.use('/server/product/', productRouter);
+
 
 app.get('/logout', (req, res) => {
   req.logout();
@@ -63,7 +73,7 @@ app.get('/login', authController.authCheck, (req, res) => {
 })
 
 // catch-all route handler for any requests to an unknown route
-app.all('*', (req, res) => res.status(404).send('Page not found'));
+app.all('*', (req, res) => res.status(404).send('I pity the page not found'));
 
 
 // global error handler

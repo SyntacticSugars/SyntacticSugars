@@ -10,7 +10,7 @@ module.exports = {
   },
   devServer: {
     proxy: {
-      '/server': 'http://localhost:3000',
+      '/server/': 'http://localhost:3000',
     },
     contentBase: './src',
     publicPath: '/dist',
@@ -23,7 +23,7 @@ module.exports = {
         use: ['babel-loader'],
       },
       {
-        test: /\.scss/,
+        test: /\.css?/,
         exclude: /node_modules/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
