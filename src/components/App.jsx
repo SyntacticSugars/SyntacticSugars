@@ -5,6 +5,8 @@ import styled from 'styled-components';
 import {BrowserRouter as Router, Link, Route} from 'react-router-dom';
 import DummyContainer from './DummyContainer.jsx';
 import CreateProduct from './CreateProduct.jsx';
+//import MinHeader from '../styles/styledHeader.js';
+
 
 const App = () => {
   const [modalState , setModalState ] = useState("none");
@@ -52,7 +54,7 @@ const App = () => {
     }
   `;
 
-  headersRoutes.push(<Route exact={true} path={`/`}>{!addProductState ? <img id="background" style={{width: '100%'}}src ="../assets/homepage-background.jpeg"/>: <CreateProduct/>}</Route>)
+  headersRoutes.push(<Route exact={true} path={`/`}>{!addProductState ? <img id="background" style={{width: '100%'}}src ="../assets/homepage-background.jpeg"/>: <CreateProduct change={addProductState , setAddProductState} />}</Route>)
 
   for(let i = 0; i < headerOptions.length; i++){
     headersRoutes.push(<Route path={`/${headerOptions[i]}`}><DummyContainer title={headerOptions[i]}/></Route>)
@@ -81,6 +83,5 @@ const App = () => {
   </div>
   )
 }
-
 
 export default App;

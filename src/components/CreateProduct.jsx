@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const CreateProduct = () => {
+const CreateProduct = (props) => {
     //poster_id
     // title VARCHAR (64) NOT NULL,
     // type VARCHAR (16) NOT NULL,
@@ -21,6 +21,13 @@ const CreateProduct = () => {
     @media (max-width: 580px) {
       ${'' /* width: 50%; */}
    }`;
+
+
+
+
+
+
+
 return (
     <CreateProductBox>
     <div>
@@ -61,8 +68,28 @@ return (
     <br/>
     <br/>
 
-    <button onClick={() => { }}>
-     Sumbit
+    <button onClick={() => { 
+        const data= [];
+        data.push(Number(document.getElementById('posterId').value));
+        data.push(document.getElementById('title').value);
+        data.push(document.getElementById('productType').value);
+        data.push(document.getElementById('image_url').value);
+        data.push(Number(document.getElementById('price').value) * 100);
+        data.push(document.getElementById('description').value);
+        data.push(document.getElementById('location').value);
+        data.push(Number(document.getElementById('shippingTime').value));
+        data.push(document.getElementById('note').value);
+       // console.log('data:', data)
+
+        fetch( "/server/post", {
+            method:"POST",
+            headers:{"Content-Type": "application/json"},
+            body: JSON.stringify(data),
+            
+        }).then(response => response.json()).then(data => {console.log("we got data back",data)}).catch((err)=>console.log("happy dance" + err))
+
+    }}>
+     Submit
     </button>
     </div>
     </CreateProductBox>
