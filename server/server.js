@@ -16,7 +16,6 @@ const productRouter = require('./routes/productRoute.js');
 app.use('/assets', express.static(path.join(__dirname, '../src/assets')));
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
 
-
 // parse incoming request body and cookies
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -31,7 +30,7 @@ app.use('/server/product/', productRouter);
 
 
 // catch-all route handler for any requests to an unknown route
-app.all('*', (req, res) => res.status(404).send('I pity the fool not found'));
+app.all('*', (req, res) => res.status(404).send('I pity the page not found'));
 
 
 // global error handler

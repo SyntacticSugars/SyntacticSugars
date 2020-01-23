@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-
 const ThumbnailButton = ({ data }) => {
   const Name = styled.h1`
   font-size: 1.5em;
@@ -38,6 +37,9 @@ const ThumbnailButton = ({ data }) => {
   background-color: gba(250,250,250);
   box-shadow: 0px 0px 3px rgba(0, 0, 0, .3);  
   text-align: left;
+  @media (max-width: 580px){
+    width: 30%;
+  }
   `;
 
   return (
