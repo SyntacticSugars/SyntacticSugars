@@ -11,7 +11,8 @@ const PORT = 3000;
 const app = express();
 const path = require('path');
 const productRouter = require('./routes/productRoute.js');
-
+// for feed
+const feedRouter = require('./routes/feedRoute.js');
 // statically serve everything in the dist folder on the route '/dist'
 app.use('/assets', express.static(path.join(__dirname, '../src/assets')));
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
@@ -28,6 +29,7 @@ app.get('/', (req, res) => {
 // route handlers
 app.use('/server/product/', productRouter);
 
+app.use('/server/feed/', feedRouter);
 
 // catch-all route handler for any requests to an unknown route
 app.all('*', (req, res) => res.status(404).send('I pity the page not found'));

@@ -3,17 +3,17 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
-import DummyContainer from './DummyContainer.jsx';
+import FeedContainer from './FeedContainer.jsx';
 import CreateProduct from './CreateProduct.jsx';
 import ProductPage from './ProductPage.jsx';
 
 const App = () => {
-  const [modalState , setModalState ] = useState("none");
-  const [loginState , setLoginState ] = useState(false);
-  const [addProductState , setAddProductState ] = useState(false);
+  const [modalState, setModalState] = useState('none');
+  const [loginState, setLoginState] = useState(false);
+  const [addProductState, setAddProductState] = useState(false);
 
-  const headerOptions = ['Biscotti','Bread' ,'Brownies', 'Cakes', 'Cookies', 'Cupcakes', 'Pastries','Pies']
-  const headersRoutes =[];
+  const headerOptions = ['Biscotti', 'Bread', 'Brownies', 'Cakes', 'Cookies', 'Cupcakes', 'Pastries', 'Pies'];
+  const headersRoutes = [];
   const headers = [];
   const Title = styled.div`
     font-size: 1.75em;
@@ -53,32 +53,34 @@ const App = () => {
     }
   `;
 
-  headersRoutes.push(<Route exact={true} path={`/`}>{!addProductState ? <img id="background" style={{width: '100%'}}src ="../assets/homepage-background.jpeg"/>: <CreateProduct change={addProductState , setAddProductState} />}</Route>)
+  headersRoutes.push(<Route exact path="/">{!addProductState ? <img id="background" style={{ width: '100%' }} src="../assets/homepage-background.jpeg" /> : <CreateProduct change={addProductState, setAddProductState} />}</Route>);
 
   for (let i = 0; i < headerOptions.length; i++) {
-    headersRoutes.push(<Route path={`/${headerOptions[i]}`}><DummyContainer title={headerOptions[i]} /></Route>);
+    headersRoutes.push(<Route path={`/${headerOptions[i]}`}><FeedContainer title={headerOptions[i]} /></Route>);
     headers.push(<Link style={{ textDecoration: 'none' }} to={`/${headerOptions[i]}`}><LinkTitle>{headerOptions[i]}</LinkTitle></Link>);
   }
 
   return (
-    <div style={{ margin: '5px' }}
-    ><Router>
-      <Title>
-        <HamburgerToggle>
-          <img onClick={() => { setModalState(modalState === 'none' ? 'flex' : 'none'); }} style={{ height: '20px' }} src="../assets/hamburger_icon.png" />
-        </HamburgerToggle>
-        <Link to="/" style={{textDecoration:"none",color: "palevioletred"}}> SyntacticSugars</Link>
-      
-        {!loginState ? <button onClick={()=>{setLoginState(true)}} style={{marginLeft: "10px", fontSize: "12px", alignItems: "center"}}>Login</button> 
-       :<button onClick={()=>{setLoginState(false)}} style={{marginLeft: "10px", fontSize: "12px", alignItems: "center"}}>Logout</button> }
+    <div style={{ margin: '5px' }}>
+      <Router>
+        <Title>
+          <HamburgerToggle>
+            <img onClick={() => { setModalState(modalState === 'none' ? 'flex' : 'none'); }} style={{ height: '20px' }} src="../assets/hamburger_icon.png" />
+          </HamburgerToggle>
+          <Link to="/" style={{ textDecoration: 'none', color: 'palevioletred' }}> SyntacticSugars</Link>
 
-       {loginState ? <button onClick={()=>{setAddProductState(true)}} style={{marginLeft: "10px", fontSize: "12px", alignItems: "center"}}>Add Product</button>:null} 
-    
-      </Title>
-      
-      {!addProductState ? <MinHeader>
-        {headers}
-      </MinHeader>:null}
+          {!loginState ? <button onClick={() => { setLoginState(true); }} style={{ marginLeft: '10px', fontSize: '12px', alignItems: 'center' }}>Login</button>
+            : <button onClick={() => { setLoginState(false); }} style={{ marginLeft: '10px', fontSize: '12px', alignItems: 'center' }}>Logout</button> }
+
+          {loginState ? <button onClick={() => { setAddProductState(true); }} style={{ marginLeft: '10px', fontSize: '12px', alignItems: 'center' }}>Add Product</button> : null}
+
+        </Title>
+
+        {!addProductState ? (
+          <MinHeader>
+            {headers}
+          </MinHeader>
+        ) : null}
         {headersRoutes}
         <Route path="/product/*">
           <ProductPage />
