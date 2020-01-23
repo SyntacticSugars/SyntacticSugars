@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const ThumbnailButton = ({ data }) => {
   const Name = styled.h1`
-  font-size: 1.5em;
+  font-size: 1em;
   color: palevioletred;
   margin: 2px 0;
   `;
@@ -37,9 +37,6 @@ const ThumbnailButton = ({ data }) => {
   background-color: gba(250,250,250);
   box-shadow: 0px 0px 3px rgba(0, 0, 0, .3);  
   text-align: left;
-  @media (max-width: 580px){
-    width: 30%;
-  }
   `;
 
   return (

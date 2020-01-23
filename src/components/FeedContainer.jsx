@@ -46,17 +46,6 @@ const FeedContainer = (props) => {
     return components;
   }
 
-  const fakeData = {
-    url: 'https://www.biggerbolderbaking.com/wp-content/uploads/2017/09/1C5A0996.jpg',
-
-    itemId: 1,
-    itemName: 'fakeName',
-    itemProducer: 'fakeProducer',
-    itemStars: '4/5',
-    itemPrice: 'cheap',
-    itemNote: 'some note',
-  };
-
   if (error) return (<h1>Product not found!</h1>);
 
   return (
@@ -67,7 +56,6 @@ const FeedContainer = (props) => {
       </h1>
       <AppLayout>
         {makeButtons()}
-        {/* <ThumbnailButton data={fakeData} /> */}
       </AppLayout>
     </div>
   );

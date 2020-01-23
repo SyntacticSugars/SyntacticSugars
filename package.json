@@ -38,6 +38,7 @@
     "concurrently": "^5.0.2",
     "cookie-parser": "^1.4.4",
     "cookie-session": "^1.4.0",
+    "cors": "^2.8.5",
     "css-loader": "^3.4.2",
     "express": "^4.17.1",
     "mongoose": "^5.8.9",
