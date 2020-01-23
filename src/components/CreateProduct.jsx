@@ -1,8 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 
 const CreateProduct = (props) => {
+    //console.log('props:', props)
+    
+    const {changePage} =props;
+    // addProductState , setAddProductState
+    //addProductState
 
+   let addProductState = changePage[0] 
+   let setAddProductState =changePage[1];
+   setAddProductState(false)
+   //console.log('changePageState after', addProductState)
+   
     const CreateProductBox = styled.div`
     display: flex;  
     align-items: center;
@@ -69,11 +80,12 @@ return (
             headers:{"Content-Type": "application/json"},
             body: JSON.stringify(data),
             
-        }).then(response => response.json()).then(data => {console.log("we got data back",data)}).catch((err)=>console.log("happy dance" + err))
-
-    }}>
-     Submit
+        }).then(response => response.json()).then(data => {console.log("Post Successful",data)}).catch((err)=>console.log("Error in posting data" + err))
+        setAddProductState(false)
+    }}><Link style={{textDecoration:"none"}} to='/'>
+     Submit</Link>
     </button>
+    <button onClick={()=>{setAddProductState(false)}}><Link style={{textDecoration:"none"}} to="/">Cancel</Link></button>
     </div>
     </CreateProductBox>
     );
