@@ -10,6 +10,33 @@ const cookieParser = require('cookie-parser');
 const PORT = 3000;
 const app = express();
 const path = require('path');
+
+const authRouter = require('./routes/authRouter.js');
+const authController = require('./controllers/authController.js');
+
+const mongoose = require('mongoose');
+const keys = require('../config/keys');
+const passportSetup = require('../config/passport-setup');
+const passport = require('passport');
+const cookieSession = require('cookie-session');
+const cors = require('cors');
+
+//intialize cookie session
+app.use(cookieSession({
+  maxAge: 24 * 60 * 60 * 1000,
+  keys: [keys.session.cookieKey]
+}));
+
+//initialize passport
+app.use(passport.initialize());
+
+//start passport session
+app.use(passport.session());
+
+//connect to mongodb
+mongoose.connect(keys.mongodb.dbURI, { useNewUrlParser: true, useUnifiedTopology: true}, () => {
+  console.log('connected to mongodb')
+});
 const productRouter = require('./routes/productRoute.js');
 
 // statically serve everything in the dist folder on the route '/dist'
@@ -25,9 +52,30 @@ app.get('/', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../src/index.html'));
 });
 
+
+
 // route handlers
 app.use('/server/product/', productRouter);
 
+//logs out and sends back to homescreen
+app.get('/logout', (req, res) => {
+  req.logout();
+  res.redirect('/');
+});
+
+//handle auth routes
+app.use('/auth', authRouter);
+
+//log in if they are authenticated
+app.get('/login', authController.authCheck, (req, res) => {
+  const { username, thumbnail } = req.user;
+  res.locals.userInfo = {
+    username,
+    thumbnail
+  };
+  res.json(res.locals.userInfo)
+  // res.redirect('/')
+})
 
 // catch-all route handler for any requests to an unknown route
 app.all('*', (req, res) => res.status(404).send('I pity the page not found'));

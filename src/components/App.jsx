@@ -11,6 +11,26 @@ const App = () => {
   const [modalState , setModalState ] = useState("none");
   const [loginState , setLoginState ] = useState(false);
   const [addProductState , setAddProductState ] = useState(false);
+  const [ usernameState, setusernameState ] = useState('none');
+  const [ thumbnailState, setthumbnailState ] = useState('none');
+
+  function authGoogle() {
+    fetch('/auth/google', {
+      mode: 'no-cors'
+    })
+    .then((res) => {
+      console.log(res.json())
+      setLoginState(true)
+    })
+  }
+  function logout() {
+    fetch('/logout')
+    .then(() => {
+      setLoginState(false);
+      setAddProductState(false);
+      setModalState("none");
+    })
+  }
 
   const headerOptions = ['Biscotti','Bread' ,'Brownies', 'Cakes', 'Cookies', 'Cupcakes', 'Pastries','Pies']
   const headersRoutes =[];
@@ -74,8 +94,8 @@ const App = () => {
         </HamburgerToggle>
         <Link to="/" style={{textDecoration:"none",color: "palevioletred"}}> SyntacticSugars</Link>
       
-        {!loginState ? <button onClick={()=>{setLoginState(true)}} style={{marginLeft: "10px", fontSize: "12px", alignItems: "center"}}>Login</button> 
-       :<button onClick={()=>{setLoginState(false)}} style={{marginLeft: "10px", fontSize: "12px", alignItems: "center"}}>Logout</button> }
+        {!loginState ? <button onClick={()=>{authGoogle()}} style={{alignItems: "center"}}><img src='https://blog.octo.com/wp-content/uploads/2018/09/signin.png'></img></button> 
+       :<button onClick={()=>{logout()}} style={{marginLeft: "10px", fontSize: "12px", alignItems: "center"}}>Logout</button> }
 
        {loginState ? <button onClick={()=>{setAddProductState(true)}} style={{marginLeft: "10px", fontSize: "12px", alignItems: "center"}}><Link  style={{textDecoration:"none"}} to='/create_product'>Add Product</Link></button>:null} 
     
