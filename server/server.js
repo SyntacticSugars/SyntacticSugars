@@ -10,7 +10,7 @@ const cookieParser = require('cookie-parser');
 const PORT = 3000;
 const app = express();
 const path = require('path');
-<<<<<<< HEAD
+
 const xxxRouter = require('./routes/xRoute.js'); // TEMP ---------------------------------------------
 const authRouter = require('./routes/authRouter.js');
 const authController = require('./controllers/authController.js');
@@ -37,9 +37,7 @@ app.use(passport.session());
 mongoose.connect(keys.mongodb.dbURI, { useNewUrlParser: true, useUnifiedTopology: true}, () => {
   console.log('connected to mongodb')
 });
-=======
 const productRouter = require('./routes/productRoute.js');
->>>>>>> dev
 
 // statically serve everything in the dist folder on the route '/dist'
 app.use('/assets', express.static(path.join(__dirname, '../src/assets')));
