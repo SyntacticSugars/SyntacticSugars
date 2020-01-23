@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const ThumbnailButton = ({ data }) => {
   const Name = styled.h1`
-  font-size: 1.5em;
+  font-size: 1em;
   color: palevioletred;
   margin: 2px 0;
   `;

@@ -4,7 +4,7 @@ const feedController = {};
 
 feedController.getfeed = (req, res, next) => {
   console.log(req.params);
-  db.query('SELECT * FROM products INNER JOIN users ON users._id=products.poster_id WHERE type=$1', [req.params.type], (err, feed) => {
+  db.query('SELECT products.*, users.company FROM products INNER JOIN users ON users._id=products.poster_id WHERE type=$1', [req.params.type], (err, feed) => {
     if (err) {
       console.log('err in get feed middleware');
       res.status(400);
