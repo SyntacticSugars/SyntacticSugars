@@ -2,16 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 const CreateProduct = (props) => {
-    //poster_id
-    // title VARCHAR (64) NOT NULL,
-    // type VARCHAR (16) NOT NULL,
-    // img_url VARCHAR (128) NOT NULL,
-    // description VARCHAR (512),
-    // price INTEGER NOT NULL,
-    // rating INTEGER,
-    // shiptime_days INTEGER,
-    // location VARCHAR (124),
-    // note VARCHAR (24),
 
     const CreateProductBox = styled.div`
     display: flex;  
@@ -21,12 +11,6 @@ const CreateProduct = (props) => {
     @media (max-width: 580px) {
       ${'' /* width: 50%; */}
    }`;
-
-
-
-
-
-
 
 return (
     <CreateProductBox>
@@ -79,9 +63,8 @@ return (
         data.push(document.getElementById('location').value);
         data.push(Number(document.getElementById('shippingTime').value));
         data.push(document.getElementById('note').value);
-       // console.log('data:', data)
 
-        fetch( "/server/post", {
+        fetch( "/server/product/post", {
             method:"POST",
             headers:{"Content-Type": "application/json"},
             body: JSON.stringify(data),
