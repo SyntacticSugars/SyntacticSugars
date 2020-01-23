@@ -10,9 +10,7 @@ const cookieParser = require('cookie-parser');
 const PORT = 3000;
 const app = express();
 const path = require('path');
-const xxxRouter = require('./routes/xRoute.js'); // TEMP ---------------------------------------------
-
-const db = require('./models/bakeryModel.js');
+const productRouter = require('./routes/productRoute.js');
 
 // statically serve everything in the dist folder on the route '/dist'
 app.use('/assets', express.static(path.join(__dirname, '../src/assets')));
@@ -29,10 +27,11 @@ app.get('/', (req, res) => {
 });
 
 // route handlers
-app.use('/server', xxxRouter); // TEMP ---------------------------------------------
+app.use('/server/product/', productRouter);
+
 
 // catch-all route handler for any requests to an unknown route
-app.all('*', (req, res) => res.status(404).send('Page not found'));
+app.all('*', (req, res) => res.status(404).send('I pity the fool not found'));
 
 
 // global error handler

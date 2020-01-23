@@ -21,6 +21,8 @@ const DummyContainer = (props) => {
 
   const fakeData = {
     url: 'https://www.biggerbolderbaking.com/wp-content/uploads/2017/09/1C5A0996.jpg',
+
+    itemId: 1,
     itemName: 'fakeName',
     itemProducer: 'fakeProducer',
     itemStars: '4/5',
@@ -35,20 +37,6 @@ const DummyContainer = (props) => {
         {title}
       </h1>
       <AppLayout>
-        <ThumbnailButton data={fakeData} />
-        <ThumbnailButton data={fakeData} />
-        <ThumbnailButton data={fakeData} />
-        <ThumbnailButton data={fakeData} />
-        <ThumbnailButton data={fakeData} />
-        <ThumbnailButton data={fakeData} />
-        <ThumbnailButton data={fakeData} />
-        <ThumbnailButton data={fakeData} />
-        <ThumbnailButton data={fakeData} />
-        <ThumbnailButton data={fakeData} />
-        <ThumbnailButton data={fakeData} />
-        <ThumbnailButton data={fakeData} />
-        <ThumbnailButton data={fakeData} />
-        <ThumbnailButton data={fakeData} />
         <ThumbnailButton data={fakeData} />
       </AppLayout>
     </div>

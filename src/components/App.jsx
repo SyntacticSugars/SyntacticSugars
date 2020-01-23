@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import DummyContainer from './DummyContainer.jsx';
+import ProductPage from './ProductPage.jsx';
 
 const App = () => {
   const [modalState, setModalState] = useState('none');
@@ -11,7 +12,7 @@ const App = () => {
   const headerOptions = ['Biscotti', 'Bread', 'Brownies', 'Cakes', 'Cookies', 'Cupcakes', 'Pastries', 'Pies'];
   const headersRoutes = [];
   const headers = [];
-  const Title = styled.p`
+  const Title = styled.div`
     font-size: 1.75em;
     text-align: center;
     color: palevioletred;
@@ -20,7 +21,7 @@ const App = () => {
     align-items: center;
     }
   `;
-  const LinkTitle = styled.p`
+  const LinkTitle = styled.div`
     margin: 2%;
     padding: 0px;
     font-size: 1em;
@@ -69,6 +70,9 @@ const App = () => {
           {headers}
         </MinHeader>
         {headersRoutes}
+        <Route path="/product/*">
+          <ProductPage />
+        </Route>
       </Router>
     </div>
   );
