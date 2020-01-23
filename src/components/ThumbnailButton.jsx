@@ -43,14 +43,14 @@ const ThumbnailButton = ({ data }) => {
   `;
 
   return (
-    <Link to={`/product/${data.itemId}`}>
-      <Button onClick={() => { console.log(data.itemId); }}>
-        <img src={data.url} alt="placeholder" style={{ width: '78px' }} />
-        <Name>{data.itemName}</Name>
-        <Info>{data.itemProducer}</Info>
-        <Info>{data.itemStars}</Info>
-        <Price>{data.itemPrice}</Price>
-        <Note>{data.itemNote}</Note>
+    <Link to={`/product/${data._id}`}>
+      <Button onClick={() => { console.log(data._id); }}>
+        <img src={data.img_url} alt="placeholder" style={{ width: '78px' }} />
+        <Name>{data.title}</Name>
+        <Info>{data.company}</Info>
+        <Info>{data.rating}</Info>
+        <Price>{data.price / 100}</Price>
+        <Note>{data.note}</Note>
       </Button>
     </Link>
   );

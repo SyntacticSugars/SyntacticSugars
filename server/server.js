@@ -38,7 +38,8 @@ mongoose.connect(keys.mongodb.dbURI, { useNewUrlParser: true, useUnifiedTopology
   console.log('connected to mongodb')
 });
 const productRouter = require('./routes/productRoute.js');
-
+// for feed
+const feedRouter = require('./routes/feedRoute.js');
 // statically serve everything in the dist folder on the route '/dist'
 app.use('/assets', express.static(path.join(__dirname, '../src/assets')));
 app.use('/dist', express.static(path.join(__dirname, '../dist')));
@@ -57,6 +58,7 @@ app.get('/', (req, res) => {
 // route handlers
 app.use('/server/product/', productRouter);
 
+app.use('/server/feed/', feedRouter);
 //logs out and sends back to homescreen
 app.get('/logout', (req, res) => {
   req.logout();

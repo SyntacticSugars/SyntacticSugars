@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
-import DummyContainer from './DummyContainer.jsx';
+import FeedContainer from './FeedContainer.jsx';
 import CreateProduct from './CreateProduct.jsx';
 import ProductPage from './ProductPage.jsx';
 
@@ -32,8 +32,8 @@ const App = () => {
     })
   }
 
-  const headerOptions = ['Biscotti','Bread' ,'Brownies', 'Cakes', 'Cookies', 'Cupcakes', 'Pastries','Pies']
-  const headersRoutes =[];
+  const headerOptions = ['Biscotti', 'Bread', 'Brownies', 'Cakes', 'Cookies', 'Cupcakes', 'Pastries', 'Pies'];
+  const headersRoutes = [];
   const headers = [];
   const Title = styled.div`
     font-size: 1.75em;
@@ -81,7 +81,7 @@ const App = () => {
 
   //creates the header routes
   for (let i = 0; i < headerOptions.length; i++) {
-    headersRoutes.push(<Route path={`/${headerOptions[i]}`}><DummyContainer title={headerOptions[i]} /></Route>);
+    headersRoutes.push(<Route path={`/${headerOptions[i]}`}><FeedContainer title={headerOptions[i]} /></Route>);
     headers.push(<Link style={{ textDecoration: 'none' }} to={`/${headerOptions[i]}`}><LinkTitle>{headerOptions[i]}</LinkTitle></Link>);
   }
 
@@ -94,7 +94,7 @@ const App = () => {
         </HamburgerToggle>
         <Link to="/" style={{textDecoration:"none",color: "palevioletred"}}> SyntacticSugars</Link>
       
-        {!loginState ? <button onClick={()=>{authGoogle()}} style={{alignItems: "center"}}><img src='https://blog.octo.com/wp-content/uploads/2018/09/signin.png'></img></button> 
+  {!loginState ? <button onClick={()=>{authGoogle()}} style={{border: 'none', backgroundColor: 'rgba(0,0,0,0)', float:'right'}}><span style={{fontSize:'1.5rem',fontWeight:'400'}}>LO</span><img src='http://pluspng.com/img-png/google-logo-png-open-2000.png' style={{width: '1.2rem', height: '1.2rem'}} /><span style={{fontSize:'1.5rem', fontWeight:'400'}}>IN</span></button> 
        :<button onClick={()=>{logout()}} style={{marginLeft: "10px", fontSize: "12px", alignItems: "center"}}>Logout</button> }
 
        {loginState ? <button onClick={()=>{setAddProductState(true)}} style={{marginLeft: "10px", fontSize: "12px", alignItems: "center"}}><Link  style={{textDecoration:"none"}} to='/create_product'>Add Product</Link></button>:null} 

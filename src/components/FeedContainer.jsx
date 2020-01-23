@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import ThumbnailButton from './ThumbnailButton.jsx';
 // import DummyComponent from './DummyComponent.jsx';
 
 
-const DummyContainer = (props) => {
+const FeedContainer = (props) => {
   const { title } = props;
+
+  const [data, setData] = useState([]); // product data
+  const [error, setError] = useState(false); // if error display error message
+
   const AppLayout = styled.div`
       display: flex;
       flex-wrap: wrap;
@@ -18,6 +22,29 @@ const DummyContainer = (props) => {
         place-items: center;
         margin:0}`;
 
+  function fetchData() {
+    fetch(`/server/feed/${title}`, {
+      method: 'GET',
+    })
+      .then((info) => info.json())
+      .then((info) => setData(info.feed))
+      .catch((err) => {
+        console.log(err);
+        setError(err);
+      });
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, data);
+
+  function makeButtons() {
+    const components = [];
+    data.forEach((el) => {
+      components.push(<ThumbnailButton data={el} />);
+    });
+    return components;
+  }
 
   const fakeData = {
     url: 'https://www.biggerbolderbaking.com/wp-content/uploads/2017/09/1C5A0996.jpg',
@@ -30,6 +57,8 @@ const DummyContainer = (props) => {
     itemNote: 'some note',
   };
 
+  if (error) return (<h1>Product not found!</h1>);
+
   return (
     <div>
       <br />
@@ -37,9 +66,10 @@ const DummyContainer = (props) => {
         {title}
       </h1>
       <AppLayout>
-        <ThumbnailButton data={fakeData} />
+        {makeButtons()}
+        {/* <ThumbnailButton data={fakeData} /> */}
       </AppLayout>
     </div>
   );
 };
-export default DummyContainer;
+export default FeedContainer;
