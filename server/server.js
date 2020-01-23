@@ -19,7 +19,7 @@ const keys = require('../config/keys');
 const passportSetup = require('../config/passport-setup');
 const passport = require('passport');
 const cookieSession = require('cookie-session');
-
+const cors = require('cors');
 
 //intialize cookie session
 app.use(cookieSession({
