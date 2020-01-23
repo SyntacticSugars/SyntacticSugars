@@ -38,6 +38,7 @@ const ThumbnailButton = ({ data }) => {
   box-shadow: 0px 0px 3px rgba(0, 0, 0, .3);  
   text-align: left;
   @media (max-width: 580px){
+    min-width: 8.5em;
     width: 30%;
   }
   `;

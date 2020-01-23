@@ -32,11 +32,19 @@ const ProductPage = (props) => {
   const ProductDiv = styled.div`
   display: flex;
   flex-direction: row;
+  margin-top: 10px;
+  @media (max-width: 580px) {
+    flex-direction: column;
+    
+  }
 `;
 
   const ImageDiv = styled.div`
     width: 25%;
-    margin-right: 10px;
+    margin-right: 20px;
+  `;
+  const ProductInfoDiv = styled.div`
+    align-self: flex-start;
   `;
 
   useEffect(() => {
@@ -46,21 +54,24 @@ const ProductPage = (props) => {
   if (error) return (<h1>Product not found!</h1>);
 
   return (
+
     <ProductDiv>
-    <ImageDiv>
-      <img src={data.img_url} alt="placeholder" style={{ width: '100%', }} />
+      <ImageDiv>
+        <img src={data.img_url} alt="placeholder" style={{ width: '100%', }} />
       </ImageDiv>
-      <div>
-      <p>{data.rating}</p>
-      <h3>{data.title}</h3>
-      <p>Note to Customer: {data.note}</p>
-      <h4>Price: {data.price / 100}</h4>
-      <button type="button">Add to Cart</button>
-      <h4>Description: {data.description}</h4>
-      <h4># of Days to Ship: {data.shiptime_days}</h4>
-      <h4>Location: {data.location}</h4>
-      </div>
+      <ProductInfoDiv>
+        <h3>{data.title}</h3> 
+        <p>{data.rating}</p>
+        <p>Note to Customer: {data.note}</p>
+        <p>Price: ${data.price / 100}</p>
+        <p>Description: {data.description}</p>
+        <p># of Days to Ship: {data.shiptime_days}</p>
+        <p>Location: {data.location}</p>    
+        <button type="button">Add to Cart</button>
+      </ProductInfoDiv>
     </ProductDiv>
+
+
   );
 };
 

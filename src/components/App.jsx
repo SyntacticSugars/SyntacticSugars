@@ -74,10 +74,13 @@ const App = () => {
   `;
 
   //home route containing background image
-  headersRoutes.push(<Route exact={true} path={`/`}>{!addProductState ? <img id="background" style={{width: '100%'}} src ="../assets/homepage-background.jpeg"/>: null}</Route>)
+  headersRoutes.push(<Route exact={true} path={`/`}>{!addProductState ? <div><br/><img id="background" style={{width: '100%'}} src ="../assets/homepage-background.jpeg"/></div>: null}</Route>)
   
   //create product route containing create product form via input fields
   headersRoutes.push(<Route exact={true} path={`/create_product`}> <CreateProduct changePage={[addProductState , setAddProductState]} /></Route>)
+
+  //product page route
+  headersRoutes.push(<Route path="/product/*"><ProductPage /></Route>)
 
   //creates the header routes
   for (let i = 0; i < headerOptions.length; i++) {
@@ -94,7 +97,7 @@ const App = () => {
         </HamburgerToggle>
         <Link to="/" style={{textDecoration:"none",color: "palevioletred"}}> SyntacticSugars</Link>
       
-  {!loginState ? <button onClick={()=>{authGoogle()}} style={{border: 'none', backgroundColor: 'rgba(0,0,0,0)', float:'right'}}><span style={{fontSize:'1.5rem',fontWeight:'400'}}>LO</span><img src='http://pluspng.com/img-png/google-logo-png-open-2000.png' style={{width: '1.2rem', height: '1.2rem'}} /><span style={{fontSize:'1.5rem', fontWeight:'400'}}>IN</span></button> 
+        {!loginState ? <button onClick={()=>{authGoogle()}} style={{border: 'none', backgroundColor: 'rgba(0,0,0,0)', float:'right'}}><span style={{fontSize:'1.5rem',fontWeight:'400'}}>LO</span><img src='http://pluspng.com/img-png/google-logo-png-open-2000.png' style={{width: '1.2rem', height: '1.2rem'}} /><span style={{fontSize:'1.5rem', fontWeight:'400'}}>IN</span></button> 
        :<button onClick={()=>{logout()}} style={{marginLeft: "10px", fontSize: "12px", alignItems: "center"}}>Logout</button> }
 
        {loginState ? <button onClick={()=>{setAddProductState(true)}} style={{marginLeft: "10px", fontSize: "12px", alignItems: "center"}}><Link  style={{textDecoration:"none"}} to='/create_product'>Add Product</Link></button>:null} 
@@ -102,12 +105,12 @@ const App = () => {
       </Title>
       
       {!addProductState ? <MinHeader>
+        <br/>
+        <br/>
+        <br/>
         {headers}
       </MinHeader>:null}
         {headersRoutes}
-        <Route path="/product/*">
-          <ProductPage />
-        </Route>
       </Router>
     </div>
   );
