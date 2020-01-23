@@ -78,7 +78,6 @@ const App = () => {
   
   //create product route containing create product form via input fields
   headersRoutes.push(<Route exact={true} path={`/create_product`}> <CreateProduct changePage={[addProductState , setAddProductState]} /></Route>)
->>>>>>> dev
 
   //creates the header routes
   for (let i = 0; i < headerOptions.length; i++) {
