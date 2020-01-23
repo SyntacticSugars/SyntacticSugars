@@ -62,6 +62,16 @@ const ProductPage = (props) => {
       });
   }
 
+  const ProductDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+  const ImageDiv = styled.div`
+    width: 25%;
+    margin-right: 10px;
+  `;
+
   useEffect(() => {
     fetchData(getId());
   }, [productId]);
