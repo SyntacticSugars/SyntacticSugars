@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const ThumbnailButton = ({ data }) => {
   const Name = styled.h1`
-  font-size: 1.5em;
+  font-size: 1em;
   color: palevioletred;
   margin: 2px 0;
   `;
@@ -37,20 +37,17 @@ const ThumbnailButton = ({ data }) => {
   background-color: gba(250,250,250);
   box-shadow: 0px 0px 3px rgba(0, 0, 0, .3);  
   text-align: left;
-  @media (max-width: 580px){
-    width: 30%;
-  }
   `;
 
   return (
-    <Link to={`/product/${data.itemId}`}>
-      <Button onClick={() => { console.log(data.itemId); }}>
-        <img src={data.url} alt="placeholder" style={{ width: '78px' }} />
-        <Name>{data.itemName}</Name>
-        <Info>{data.itemProducer}</Info>
-        <Info>{data.itemStars}</Info>
-        <Price>{data.itemPrice}</Price>
-        <Note>{data.itemNote}</Note>
+    <Link to={`/product/${data._id}`}>
+      <Button onClick={() => { console.log(data._id); }}>
+        <img src={data.img_url} alt="placeholder" style={{ width: '78px' }} />
+        <Name>{data.title}</Name>
+        <Info>{data.company}</Info>
+        <Info>{data.rating}</Info>
+        <Price>{data.price / 100}</Price>
+        <Note>{data.note}</Note>
       </Button>
     </Link>
   );
