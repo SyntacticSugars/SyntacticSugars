@@ -34,7 +34,7 @@ const ThumbnailButton = ({ data }) => {
   `;
   const Button = styled.button`
   padding: .5em;
-  margin: .5em;
+  margin: .3em;
   background-color: gba(250,250,250);
   box-shadow: 0px 0px 3px rgba(0, 0, 0, .3);  
   text-align: left;
