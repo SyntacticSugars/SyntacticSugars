@@ -85,6 +85,7 @@ return (
     }}><Link style={{textDecoration:"none"}} to='/'>
      Submit</Link>
     </button>
+    <button onClick={()=>{setAddProductState(false)}}><Link style={{textDecoration:"none"}} to="/">Cancel</Link></button>
     </div>
     </CreateProductBox>
     );
