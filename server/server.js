@@ -20,6 +20,7 @@ const keys = require('../config/keys');
 const passportSetup = require('../config/passport-setup');
 const passport = require('passport');
 const cookieSession = require('cookie-session');
+const cors = require('cors');
 
 //intialize cookie session
 app.use(cookieSession({
@@ -57,17 +58,24 @@ app.get('/', (req, res) => {
 // route handlers
 app.use('/server/product/', productRouter);
 
-
+//logs out and sends back to homescreen
 app.get('/logout', (req, res) => {
   req.logout();
   res.redirect('/');
-})
+});
 
+//handle auth routes
 app.use('/auth', authRouter);
 
-
+//log in if they are authenticated
 app.get('/login', authController.authCheck, (req, res) => {
-  res.redirect('/')
+  const { username, thumbnail } = req.user;
+  res.locals.userInfo = {
+    username,
+    thumbnail
+  };
+  res.json(res.locals.userInfo)
+  // res.redirect('/')
 })
 
 // catch-all route handler for any requests to an unknown route
