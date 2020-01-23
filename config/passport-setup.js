@@ -20,6 +20,7 @@ passport.use(new GoogleStrategy({
   passReqToCallback   : true
 },
 (req, accessToken, refreshToken, profile, done) => {
+  console.log("inside the callback")
   //check if user already exists in db
   User.findOne({ googleId: profile.id }).then((currentUser) => {
     if(currentUser){

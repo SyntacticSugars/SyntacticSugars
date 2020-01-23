@@ -29,6 +29,16 @@ const ProductPage = (props) => {
       });
   }
 
+  const ProductDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+  const ImageDiv = styled.div`
+    width: 25%;
+    margin-right: 10px;
+  `;
+
   useEffect(() => {
     fetchData(getId());
   }, [productId]);
@@ -36,17 +46,21 @@ const ProductPage = (props) => {
   if (error) return (<h1>Product not found!</h1>);
 
   return (
-    <div>
-      <img src={data.img_url} alt="placeholder" style={{ width: '100%' }} />
+    <ProductDiv>
+    <ImageDiv>
+      <img src={data.img_url} alt="placeholder" style={{ width: '100%', }} />
+      </ImageDiv>
+      <div>
       <p>{data.rating}</p>
-      <h6>{data.title}</h6>
-      <p>{data.note}</p>
-      <h5>{data.price / 100}</h5>
+      <h3>{data.title}</h3>
+      <p>Note to Customer: {data.note}</p>
+      <h4>Price: {data.price / 100}</h4>
       <button type="button">Add to Cart</button>
-      <p>{data.description}</p>
-      <p>{data.shiptime_days}</p>
-      <p>{data.location}</p>
-    </div>
+      <h4>Description: {data.description}</h4>
+      <h4># of Days to Ship: {data.shiptime_days}</h4>
+      <h4>Location: {data.location}</h4>
+      </div>
+    </ProductDiv>
   );
 };
 
