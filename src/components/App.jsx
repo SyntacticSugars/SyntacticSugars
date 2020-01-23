@@ -8,11 +8,6 @@ import CreateProduct from './CreateProduct.jsx';
 import ProductPage from './ProductPage.jsx';
 
 const App = () => {
-<<<<<<< HEAD
-  const [modalState, setModalState] = useState('none');
-  const [loginState, setLoginState] = useState(false);
-  const [addProductState, setAddProductState] = useState(false);
-=======
   const [modalState , setModalState ] = useState("none");
   const [loginState , setLoginState ] = useState(false);
   const [addProductState , setAddProductState ] = useState(false);
@@ -36,7 +31,6 @@ const App = () => {
       setModalState("none");
     })
   }
->>>>>>> dev
 
   const headerOptions = ['Biscotti', 'Bread', 'Brownies', 'Cakes', 'Cookies', 'Cupcakes', 'Pastries', 'Pies'];
   const headersRoutes = [];
@@ -79,9 +73,6 @@ const App = () => {
     }
   `;
 
-<<<<<<< HEAD
-  headersRoutes.push(<Route exact path="/">{!addProductState ? <img id="background" style={{ width: '100%' }} src="../assets/homepage-background.jpeg" /> : <CreateProduct change={addProductState, setAddProductState} />}</Route>);
-=======
   //home route containing background image
   headersRoutes.push(<Route exact={true} path={`/`}>{!addProductState ? <img id="background" style={{width: '100%'}} src ="../assets/homepage-background.jpeg"/>: null}</Route>)
   
@@ -96,28 +87,6 @@ const App = () => {
   }
 
   return (
-<<<<<<< HEAD
-    <div style={{ margin: '5px' }}>
-      <Router>
-        <Title>
-          <HamburgerToggle>
-            <img onClick={() => { setModalState(modalState === 'none' ? 'flex' : 'none'); }} style={{ height: '20px' }} src="../assets/hamburger_icon.png" />
-          </HamburgerToggle>
-          <Link to="/" style={{ textDecoration: 'none', color: 'palevioletred' }}> SyntacticSugars</Link>
-
-          {!loginState ? <button onClick={() => { setLoginState(true); }} style={{ marginLeft: '10px', fontSize: '12px', alignItems: 'center' }}>Login</button>
-            : <button onClick={() => { setLoginState(false); }} style={{ marginLeft: '10px', fontSize: '12px', alignItems: 'center' }}>Logout</button> }
-
-          {loginState ? <button onClick={() => { setAddProductState(true); }} style={{ marginLeft: '10px', fontSize: '12px', alignItems: 'center' }}>Add Product</button> : null}
-
-        </Title>
-
-        {!addProductState ? (
-          <MinHeader>
-            {headers}
-          </MinHeader>
-        ) : null}
-=======
     <div style={{ margin: '5px' }}
     ><Router>
       <Title>
@@ -136,7 +105,6 @@ const App = () => {
       {!addProductState ? <MinHeader>
         {headers}
       </MinHeader>:null}
->>>>>>> dev
         {headersRoutes}
         <Route path="/product/*">
           <ProductPage />

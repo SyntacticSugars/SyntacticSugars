@@ -58,9 +58,7 @@ app.get('/', (req, res) => {
 // route handlers
 app.use('/server/product/', productRouter);
 
-<<<<<<< HEAD
 app.use('/server/feed/', feedRouter);
-=======
 //logs out and sends back to homescreen
 app.get('/logout', (req, res) => {
   req.logout();
@@ -80,7 +78,6 @@ app.get('/login', authController.authCheck, (req, res) => {
   res.json(res.locals.userInfo)
   // res.redirect('/')
 })
->>>>>>> dev
 
 // catch-all route handler for any requests to an unknown route
 app.all('*', (req, res) => res.status(404).send('I pity the page not found'));
