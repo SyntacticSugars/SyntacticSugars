@@ -41,8 +41,8 @@ const ThumbnailButton = ({ data }) => {
   `;
 
   return (
-    <Link to={`/product/:${data.itemId}`}>
-      <Button onClick={() => { console.log('Cookies'); }}>
+    <Link to={`/product/${data.itemId}`}>
+      <Button onClick={() => { console.log(data.itemId); }}>
         <img src={data.url} alt="placeholder" style={{ width: '78px' }} />
         <Name>{data.itemName}</Name>
         <Info>{data.itemProducer}</Info>

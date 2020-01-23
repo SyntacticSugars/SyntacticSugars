@@ -3,22 +3,26 @@ import styled from 'styled-components';
 
 
 const ProductPage = (props) => {
-  const [data, setData] = useState({});
-  const [error, setError] = useState(false);
+  const [data, setData] = useState({}); // product data
+  const [error, setError] = useState(false); // if error display error message
+  const [productId, setId] = useState(0); // to stop infinite rerenders
 
-  // console.log(window.location.href);
-
+  // gets product id # from url
   const getId = () => {
     const url = window.location.href;
-    const index = url.lastIndexOf(':');
+    const index = url.lastIndexOf('/');
     const id = url.substring(index + 1);
+    setId(id);
     return id;
   };
-  // console.log(getId());
+
+  // fetches product data from server according to id #
   function fetchData(id) {
-    fetch(`/product/:${id}`)
-      .then((info) => console.log('KEY WORD', info))
-      .then((info) => setData(info))
+    fetch(`/server/product/${id}`, {
+      method: 'GET',
+    })
+      .then((info) => info.json())
+      .then((info) => setData(info.product))
       .catch((err) => {
         console.log(err);
         setError(err);
@@ -27,22 +31,7 @@ const ProductPage = (props) => {
 
   useEffect(() => {
     fetchData(getId());
-  }, [data]);
-
-
-  // const data = {
-  //   img_url: 'https://www.biggerbolderbaking.com/wp-content/uploads/2017/09/1C5A0996.jpg',
-  //   id: 1,
-  //   title: 'fakeName',
-  //   type: 'Pies',
-  //   poster_id: 2,
-  //   rating: 4,
-  //   price: 'cheap',
-  //   note: 'some note',
-  //   description: 'apple',
-  //   location: 'NYC',
-  //   shiptime_days: 5,
-  // };
+  }, [productId]);
 
   if (error) return (<h1>Product not found!</h1>);
 
@@ -52,7 +41,7 @@ const ProductPage = (props) => {
       <p>{data.rating}</p>
       <h6>{data.title}</h6>
       <p>{data.note}</p>
-      <h5>{data.price}</h5>
+      <h5>{data.price / 100}</h5>
       <button type="button">Add to Cart</button>
       <p>{data.description}</p>
       <p>{data.shiptime_days}</p>
