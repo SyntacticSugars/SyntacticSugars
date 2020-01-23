@@ -53,8 +53,13 @@ const App = () => {
     }
   `;
 
-  headersRoutes.push(<Route exact={true} path={`/`}>{!addProductState ? <img id="background" style={{width: '100%'}}src ="../assets/homepage-background.jpeg"/>: <CreateProduct change={addProductState , setAddProductState} />}</Route>)
+  //home route containing background image
+  headersRoutes.push(<Route exact={true} path={`/`}>{!addProductState ? <img id="background" style={{width: '100%'}} src ="../assets/homepage-background.jpeg"/>: null}</Route>)
+  
+  //create product route containing create product form via input fields
+  headersRoutes.push(<Route exact={true} path={`/create_product`}> <CreateProduct changePage={[addProductState , setAddProductState]} /></Route>)
 
+  //creates the header routes
   for (let i = 0; i < headerOptions.length; i++) {
     headersRoutes.push(<Route path={`/${headerOptions[i]}`}><DummyContainer title={headerOptions[i]} /></Route>);
     headers.push(<Link style={{ textDecoration: 'none' }} to={`/${headerOptions[i]}`}><LinkTitle>{headerOptions[i]}</LinkTitle></Link>);
@@ -72,7 +77,7 @@ const App = () => {
         {!loginState ? <button onClick={()=>{setLoginState(true)}} style={{marginLeft: "10px", fontSize: "12px", alignItems: "center"}}>Login</button> 
        :<button onClick={()=>{setLoginState(false)}} style={{marginLeft: "10px", fontSize: "12px", alignItems: "center"}}>Logout</button> }
 
-       {loginState ? <button onClick={()=>{setAddProductState(true)}} style={{marginLeft: "10px", fontSize: "12px", alignItems: "center"}}>Add Product</button>:null} 
+       {loginState ? <button onClick={()=>{setAddProductState(true)}} style={{marginLeft: "10px", fontSize: "12px", alignItems: "center"}}><Link  style={{textDecoration:"none"}} to='/create_product'>Add Product</Link></button>:null} 
     
       </Title>
       
